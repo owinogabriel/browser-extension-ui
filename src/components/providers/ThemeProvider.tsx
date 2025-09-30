@@ -34,9 +34,8 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 /**
  * ThemeProvider
  * Manages theme state (dark, light, or system) and persists it in localStorage
- *  applies the correct CSS class to the HTML root element
+ * Applies the correct CSS class to the HTML root element
  */
-
 export function ThemeProvider({
   children,
   defaultTheme = "system",
@@ -58,26 +57,28 @@ export function ThemeProvider({
   }, [storageKey]);
 
   /**
-   * When theme changes TODO:
+   * When theme changes:
    * - Remove old theme classes
-   * - apply new theme class to <html> element
-   * - if `system` is slected, it detects OS preference automatically
+   * - Apply new theme class to <html> element
+   * - If `system` is selected, it detects OS preference automatically
    */
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
 
     if (theme === "system") {
-      const systemTheme = window.matchMedia("prefers-color-scheme:dark").matches
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
       root.classList.add(systemTheme);
+    } else {
+      root.classList.add(theme); // ✅ apply dark or light directly
     }
   }, [theme]);
 
   /**
    * Context Value
-   * exposes theme and setTheme method
+   * Exposes theme and setTheme method
    */
   const value = {
     theme,
@@ -95,7 +96,7 @@ export function ThemeProvider({
 }
 
 /**
- * custom hook for consuming Theme context
+ * Custom hook for consuming Theme context
  */
 export const useThemeContext = () => {
   const context = useContext(ThemeProviderContext);
