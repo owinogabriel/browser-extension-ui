@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 // Possible theme values
 type Theme = "dark" | "light" | "system";
@@ -35,6 +41,7 @@ export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "browser extension",
+  ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
@@ -49,4 +56,50 @@ export function ThemeProvider({
       setTheme(storedTheme);
     }
   }, [storageKey]);
+
+  /**
+   * When theme changes TODO:
+   * - Remove old theme classes
+   * - apply new theme class to <html> element
+   * - if `system` is slected, it detects OS preference automatically
+   */
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("prefers-color-scheme:dark").matches
+        ? "dark"
+        : "light";
+      root.classList.add(systemTheme);
+    }
+  }, [theme]);
+
+  /**
+   * Context Value
+   * exposes theme and setTheme method
+   */
+  const value = {
+    theme,
+    setTheme: (theme: Theme) => {
+      localStorage.setItem(storageKey, theme);
+      setTheme(theme);
+    },
+  };
+
+  return (
+    <ThemeProviderContext.Provider {...props} value={value}>
+      {children}
+    </ThemeProviderContext.Provider>
+  );
 }
+
+/**
+ * custom hook for consuming Theme context
+ */
+export const useThemeContext = () => {
+  const context = useContext(ThemeProviderContext);
+  if (context === undefined)
+    throw new Error("useTheme must be used within a ThemeProvider");
+  return context;
+};
