@@ -1,6 +1,7 @@
 # Browser Extension
 
 A modern, Full-featured Browser Extension App built with Next.js 14, This was solution from front-end mentore which i choosed to do inorder to improve my skill as developer" best grammer mybe add also aim was also to understand well working with fiteration logic.
+
 <div align="center">
 <br />
 <a href="/" target="_blank">
@@ -17,6 +18,7 @@ A modern, Full-featured Browser Extension App built with Next.js 14, This was so
 ## ✨ Features
 
 ### 🏗️ Core Funcitionality
+
 - **Complete Browser Directory** - Browse all Extension
 - **Advanced Filtering** - Real-time with type filters
 - **Responsive Design** - Seamless experience across desktop, tablet and mobile
