@@ -87,6 +87,20 @@ export default function Home() {
               <h2 className="font-semibold text-lg">{ext.name}</h2>
               <p className="text-sm text-gray-600 mb-4">{ext.description}</p>
             </div>
+            <div>
+              <Button
+                variant={ext.isActive ? "default" : "outline"}
+                size="sm"
+                className={
+                  ext.isActive
+                    ? "bg-green-500 text-white hover:bg-green-600"
+                    : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                }
+                onClick={() => toggleExtension(ext.name)}
+              >
+                {ext.isActive ? "Active" : "Inactive"}
+              </Button>
+            </div>
           </div>
         ))}
       </div>
