@@ -3,30 +3,48 @@
 import { Button } from "@/components/ui/Button";
 import { useEffect, useState } from "react";
 
-
 type Extension = {
-  logo:string,
-  name:string,
-  description:string,
-  isActive:boolean
-}
+  logo: string;
+  name: string;
+  description: string;
+  isActive: boolean;
+};
 
 export default function Home() {
-  const [extension, setExtension] = useState<Extension[]>([])
+  const [extension, setExtension] = useState<Extension[]>([]);
   const [activeState, setActiveState] = useState("All");
   const filters = ["All", "Active", "Inactive"];
 
   // Fetching data from JSON file
   useEffect(() => {
-    const fetchExtension =  async () => {
-      const res =  await fetch("/data.json");
+    const fetchExtension = async () => {
+      const res = await fetch("/data.json");
       const data = await res.json();
       setExtension(data);
     };
-    fetchExtension()
-  },[])
+    fetchExtension();
+  }, []);
 
+  // filter logic
+  const filterExtension = extension.filter((ext) => {
+    if (activeState === "All") return true;
+    if (activeState === "Active") return ext.isActive;
+    if (activeState === "Inactive") return ext.isActive;
+  });
 
+  // Toggle
+  const toggleExtension = (name: string) => {
+    setExtension((prev) =>
+      prev.map((ext) =>
+        ext.name === name ? { ...ext, isActive: !ext.isActive } : ext
+      )
+    );
+  };
+
+  // Remove
+  const removeExtension = (name: string) => {
+    setExtension((prev) => prev.filter((ext) => ext.name !== name));
+  };
   return (
     <div className="container mx-auto px-4 py-8 ">
       <div className="flex justify-between mb-8">
