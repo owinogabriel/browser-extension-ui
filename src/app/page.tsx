@@ -1,11 +1,31 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+
+type Extension = {
+  logo:string,
+  name:string,
+  description:string,
+  isActive:boolean
+}
 
 export default function Home() {
+  const [extension, setExtension] = useState<Extension[]>([])
   const [activeState, setActiveState] = useState("All");
   const filters = ["All", "Active", "Inactive"];
+
+  // Fetching data from JSON file
+  useEffect(() => {
+    const fetchExtension =  async () => {
+      const res =  await fetch("/data.json");
+      const data = await res.json();
+      setExtension(data);
+    };
+    fetchExtension()
+  },[])
+
 
   return (
     <div className="container mx-auto px-4 py-8 ">
