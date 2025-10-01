@@ -87,7 +87,8 @@ export default function Home() {
               <h2 className="font-semibold text-lg">{ext.name}</h2>
               <p className="text-sm text-gray-600 mb-4">{ext.description}</p>
             </div>
-            <div>
+            <div className="flex justify-between items-center gap-2 mt-4">
+              {/* Toggle */}
               <Button
                 variant={ext.isActive ? "default" : "outline"}
                 size="sm"
@@ -99,6 +100,15 @@ export default function Home() {
                 onClick={() => toggleExtension(ext.name)}
               >
                 {ext.isActive ? "Active" : "Inactive"}
+              </Button>
+
+              {/* Remove Button */}
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={() => removeExtension(ext.name)}
+              >
+                Remove
               </Button>
             </div>
           </div>
