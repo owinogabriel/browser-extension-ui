@@ -1,7 +1,10 @@
+"use client"
+
 import { Button } from "@/components/ui/Button";
+import { useState } from "react";
 
 export default function Home() {
-  const [activeState, setActiveState] = "All";
+  const [activeState, setActiveState] = useState("All");
   const filters = ["All", "Active", "Inactive"];
 
   return (
@@ -11,7 +14,7 @@ export default function Home() {
         <div className="flex gap-4">
           {filters.map((filter) => (
             <Button
-            size="sm"
+              size="sm"
               key={filter}
               variant={activeState === filter ? "default" : "outline"}
               className={
@@ -21,7 +24,7 @@ export default function Home() {
               }
               onClick={() => setActiveState(filter)}
             >
-               {filter.charAt(0).toUpperCase() + filter.slice(1)}
+              {filter.charAt(0).toUpperCase() + filter.slice(1)}
             </Button>
           ))}
         </div>
