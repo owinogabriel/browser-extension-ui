@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/Button";
 import { useState } from "react";
@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8 ">
       <div className="flex justify-between mb-8">
-        <h1 className="text-4xl  font-bold">Browser Extension</h1>
+        <h1 className="text-4xl  font-bold">Extension List</h1>
         <div className="flex gap-4">
           {filters.map((filter) => (
             <Button
