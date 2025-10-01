@@ -50,12 +50,12 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between mb-8">
-        <h1 className="text-4xl font-bold">Extension List</h1>
-        <div className="flex gap-4">
+        <h1 className="text-2xl md:text-4xl font-bold">Extension List</h1>
+        <div className="flex gap-2 md:gap-4">
           {filters.map((filter) => (
             <button
               key={filter}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-2 py-1.5 rounded-md text-sm font-medium transition-colors ${
                 activeFilter === filter
                   ? "bg-orange-500 text-white hover:bg-orange-600"
                   : "border dark:border-none border-gray-300 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
@@ -89,7 +89,7 @@ export default function Home() {
             <div className="flex justify-between items-center gap-2 mt-4">
               {/* Remove Button */}
               <button
-                className="px-3 py-2 rounded-md text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition-colors"
+                className="px-3 py-2 rounded-md text-sm font-medium border  text-gray-600 hover:border-red-600 transition-colors"
                 onClick={() => removeExtension(ext.name)}
               >
                 <Trash2 size={18} />
