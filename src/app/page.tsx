@@ -19,7 +19,7 @@ export default function Home() {
   // Fetching data from JSON file
   useEffect(() => {
     const fetchExtension = async () => {
-      const res = await fetch("/data.json");
+      const res = await fetch("/data/extension.json");
       const data = await res.json();
       setExtension(data);
     };
@@ -55,7 +55,7 @@ export default function Home() {
           {filters.map((filter) => (
             <button
               key={filter}
-              className={`px-2 py-1.5 rounded-md text-sm font-medium transition-colors ${
+              className={`px-2 py-1.5 rounded-md text-xs font-medium transition-colors lg:px-4 lg:py-2 lg:text:sm lg:gap-4 ${
                 activeFilter === filter
                   ? "bg-orange-500 text-white hover:bg-orange-600"
                   : "border dark:border-none border-gray-300 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
