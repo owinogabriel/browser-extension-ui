@@ -44,14 +44,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <footer className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-8">
           {/* Brand Section */}
           <div className="col-span-2">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              ExtensionHub
+              Extensions
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4 max-w-xs">
               Manage and discover powerful extensions to enhance your workflow.
@@ -101,8 +101,8 @@ export default function Footer() {
             </p>
             <p className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-1">
               Made with{" "}
-              <Heart size={16} className="text-red-500 fill-red-500" /> Leon
-              Gabriel
+              <Heart size={16} className="text-red-500 fill-red-500" />
+              by Leon Gabriel
             </p>
           </div>
         </div>
