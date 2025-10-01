@@ -84,7 +84,7 @@ export default function Home() {
                 className="mb-4"
               />
               <h2 className="font-semibold text-lg">{ext.name}</h2>
-              <p className="text-sm text-gray-600 mb-4">{ext.description}</p>
+              <p className="text-sm lg:text-lg text-gray-600 mb-4">{ext.description}</p>
             </div>
             <div className="flex justify-between items-center gap-2 mt-4">
               {/* Remove Button */}
