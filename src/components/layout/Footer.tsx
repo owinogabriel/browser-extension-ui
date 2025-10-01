@@ -6,10 +6,14 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:contact@example.com", label: "Email" },
+    { icon: Github, href: "https://github.com/owinogabriel", label: "GitHub" },
+    { icon: Twitter, href: "https://x.com/LyonGabrie24988", label: "Twitter" },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/leon-gabriel-82655b308/",
+      label: "LinkedIn",
+    },
+    { icon: Mail, href: "mailto:owinogabrieel@gmail.com", label: "Email" },
   ];
 
   const footerLinks = {
@@ -96,7 +100,9 @@ export default function Footer() {
               © {currentYear} ExtensionHub. All rights reserved.
             </p>
             <p className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-1">
-              Made with <Heart size={16} className="text-red-500 fill-red-500" /> Leon Gabriel
+              Made with{" "}
+              <Heart size={16} className="text-red-500 fill-red-500" /> Leon
+              Gabriel
             </p>
           </div>
         </div>
