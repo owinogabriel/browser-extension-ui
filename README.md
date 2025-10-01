@@ -1,10 +1,10 @@
 # Browser Extension
 
-A modern, Full-featured Browser Extension App built with Next.js 14, This was solution from front-end mentore which i choosed to do inorder to improve my skill as developer" best grammer mybe add also aim was also to understand well working with fiteration logic.
+A modern, full-featured browser extension app built with Next.js 14. I chose this Frontend Mentor challenge to improve my skills as a developer, with the additional aim of better understanding and practising iteration logic.
 
 <div align="center">
 <br />
-<a href="/" target="_blank">
+<a href="https://browser-extension-ui-tawny.vercel.app/" target="_blank">
 <img  width="1280" alt="Browser Extension" src="./preview.jpg"/>
 </a>
  <br />
