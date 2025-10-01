@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type Extension = {
@@ -12,7 +13,7 @@ type Extension = {
 
 export default function Home() {
   const [extension, setExtension] = useState<Extension[]>([]);
-  const [activeState, setActiveState] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("All");
   const filters = ["All", "Active", "Inactive"];
 
   // Fetching data from JSON file
@@ -27,9 +28,9 @@ export default function Home() {
 
   // filter logic
   const filterExtension = extension.filter((ext) => {
-    if (activeState === "All") return true;
-    if (activeState === "Active") return ext.isActive;
-    if (activeState === "Inactive") return ext.isActive;
+    if (activeFilter === "All") return true;
+    if (activeFilter === "Active") return ext.isActive;
+    if (activeFilter === "Inactive") return ext.isActive;
   });
 
   // Toggle
@@ -54,18 +55,40 @@ export default function Home() {
             <Button
               size="sm"
               key={filter}
-              variant={activeState === filter ? "default" : "outline"}
+              variant={activeFilter === filter ? "default" : "outline"}
               className={
-                activeState === filter
+                activeFilter === filter
                   ? "bg-orange-500 text-white hover:bg-orange-600"
                   : ""
               }
-              onClick={() => setActiveState(filter)}
+              onClick={() => setActiveFilter(filter)}
             >
               {filter.charAt(0).toUpperCase() + filter.slice(1)}
             </Button>
           ))}
         </div>
+      </div>
+
+      {/* CardsGrid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {filterExtension.map((ext) => (
+          <div
+            key={ext.name}
+            className="border rounded-xl p-4 shadow hover:shadow-lg transition flex flex-col justify-between"
+          >
+            <div>
+              <Image
+                src={ext.logo}
+                alt={ext.name}
+                width={48}
+                height={48}
+                className="mb-4"
+              />
+              <h2 className="font-semibold text-lg">{ext.name}</h2>
+              <p className="text-sm text-gray-600 mb-4">{ext.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
