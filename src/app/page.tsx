@@ -18,12 +18,21 @@ export default function Home() {
 
   // Fetching data from JSON file
   useEffect(() => {
+    let isMounted = true;
     const fetchExtension = async () => {
-      const res = await fetch("/data/extension.json");
-      const data = await res.json();
-      setExtension(data);
+      try {
+        const res = await fetch("/data/extension.json");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        if (isMounted) setExtension(data);
+      } catch (err) {
+        console.error("Error fetching extension data:", err);
+      }
     };
     fetchExtension();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // filter logic
@@ -84,7 +93,9 @@ export default function Home() {
                 className="mb-4"
               />
               <h2 className="font-semibold text-lg">{ext.name}</h2>
-              <p className="text-sm lg:text-lg text-gray-600 mb-4">{ext.description}</p>
+              <p className="text-sm lg:text-lg text-gray-600 mb-4">
+                {ext.description}
+              </p>
             </div>
             <div className="flex justify-between items-center gap-2 mt-4">
               {/* Remove Button */}
